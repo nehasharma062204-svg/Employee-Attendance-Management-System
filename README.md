@@ -1,182 +1,172 @@
-# 👨‍💼 Employee Attendance Management System (Python + MySQL)
+# 👨‍💼 Employee Attendance Management System
 
-## 📌 Project Overview
-The **Employee Attendance Management System** is a **menu-driven Python application** that uses **MySQL** as the backend database to manage employee records and their attendance.
+A Python based Employee Attendance Management System using MySQL database and Streamlit web interface.
 
-This project demonstrates **core backend development skills**, including database design, CRUD operations, and Python–MySQL integration. It is suitable for **college projects, GitHub portfolios, and beginner backend roles**.
+The project contains a separate backend file and frontend file.
 
----
+## Features
 
-## 🎯 Project Objectives
-- Add and manage employee records
-- Mark daily attendance (Present / Absent)
-- View attendance history of employees
-- Update employee salary
-- Delete employees and related attendance
-- Use MySQL for persistent data storage
+* Add new employee
+* View all employees
+* Search employee by ID
+* Update employee salary
+* Delete employee
+* Mark employee attendance
+* View attendance history
+* MySQL database integration
+* Streamlit web UI
 
----
+## Technologies Used
 
-## 🛠️ Tech Stack
-- **Programming Language:** Python  
-- **Database:** MySQL  
-- **Libraries Used:**
-  - mysql-connector-python
-  - python-dotenv (optional)
-- **Tools:**
-  - MySQL Workbench
-  - VS Code
-  - PowerShell / Terminal
+* Python
+* Streamlit
+* MySQL
+* mysql-connector-python
+* python-dotenv
 
----
+## Project Structure
 
-## 📂 Project Structure
+```text
+Employee-Attendance-System/
+
+│
+├── employee_system.py
+│     └── Database connection
+│     └── CRUD operations
+│     └── Backend logic
+│
+├── app.py
+│     └── Streamlit frontend
+│
+├── requirements.txt
+│
+├── README.md
+│
+└── .env
 ```
 
-employee attendance management/
-│── attendance_system.py
-│── .env
-│── .gitignore
-│── README.md
+## Setup
 
-````
+### 1. Clone Repository
 
----
+```bash
+git clone your-repository-link
+```
 
-## 🗄️ Database Schema
+Go inside project:
 
-### Employees Table
-| Column | Type |
-|------|------|
-emp_id | INT (Primary Key)  
-name | VARCHAR  
-department | VARCHAR  
-salary | INT  
-
-### Attendance Table
-| Column | Type |
-|------|------|
-att_id | INT (Primary Key)  
-emp_id | INT (Foreign Key)  
-date | DATE  
-time | TIME  
-status | ENUM (Present, Absent)  
+```bash
+cd Employee-Attendance-System
+```
 
 ---
 
-## 🧾 SQL Setup
+### 2. Install Dependencies
 
-Run the following SQL commands in **MySQL Workbench**:
-
-```sql
-CREATE DATABASE attendance_db;
-USE attendance_db;
-
-CREATE TABLE employees (
-    emp_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    department VARCHAR(100),
-    salary INT
-);
-
-CREATE TABLE attendance (
-    att_id INT AUTO_INCREMENT PRIMARY KEY,
-    emp_id INT,
-    date DATE,
-    time TIME,
-    status ENUM('Present','Absent'),
-    FOREIGN KEY (emp_id) REFERENCES employees(emp_id) ON DELETE CASCADE
-);
-````
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 🔐 Environment Variables (Optional & Secure)
+### 3. Setup Environment Variables
 
 Create a `.env` file:
 
 ```env
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=attendance_db
-```
-
-⚠️ Do NOT upload `.env` to GitHub.
-
-### `.gitignore`
-
-```
-.env
-__pycache__/
-*.pyc
+DB_PASSWORD=your_password
+DB_NAME=employee_db
 ```
 
 ---
 
-## ▶️ How to Run the Project
+## Database Setup
 
-### 1️⃣ Install dependencies
+Create database:
+
+```sql
+CREATE DATABASE employee_db;
+```
+
+Create employee table:
+
+```sql
+CREATE TABLE employees(
+    emp_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    department VARCHAR(100),
+    salary INT
+);
+```
+
+Create attendance table:
+
+```sql
+CREATE TABLE attendance(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    emp_id INT,
+    date DATE,
+    time TIME,
+    status VARCHAR(20)
+);
+```
+
+---
+
+## Run Terminal Version
 
 ```bash
-pip install mysql-connector-python python-dotenv
+python employee_system.py
 ```
 
-### 2️⃣ Run the application
+This runs the backend through terminal menu.
+
+---
+
+## Run Streamlit Version
 
 ```bash
-python attendance_system.py
+streamlit run app.py
 ```
 
----
-
-## 📋 Features
-
-* Add employee details
-* Mark attendance with date and time
-* Display all employees
-* Search employee by ID
-* Update employee salary
-* View attendance history
-* Delete employee records
-* Menu-driven user interface
+The application opens in browser.
 
 ---
 
-## 🧠 Skills Demonstrated
+## Application Flow
 
-* Python programming
-* MySQL database integration
-* SQL queries (CRUD)
-* Relational database design
-* Error handling and validation
-* Menu-driven application logic
-* Secure credential handling
-* Git & GitHub usage
+User
 
----
+↓
 
-## 📌 Resume Description (Copy–Paste)
+Streamlit Interface (`app.py`)
 
-**Employee Attendance Management System**
+↓
 
-* Developed a Python–MySQL based system to manage employee records and attendance
-* Implemented CRUD operations with relational database design
-* Built a menu-driven console application
-* Applied secure database practices and GitHub-ready project structure
+Backend Functions (`employee_system.py`)
+
+↓
+
+MySQL Database
 
 ---
 
-## 🔮 Future Enhancements
+## Deployment
 
-* User login and authentication
-* Monthly attendance reports
-* Export attendance to CSV
-* GUI using Tkinter
-* Web version using Flask/Django
+This project can be deployed using Streamlit Community Cloud.
+
+Steps:
+
+1. Upload project to GitHub
+2. Open Streamlit Cloud
+3. Select repository
+4. Choose `app.py`
+5. Deploy
 
 ---
 
-## 👤 Author
+## Author
 
 Neha Sharma
